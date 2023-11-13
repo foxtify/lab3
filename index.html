@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.min.css">
+    <title>Портфолио</title>
+</head>
+<body>
+<header>
+    <div class="theme-container" onclick="changeTheme()">
+        <img id="icon" width="50" src="public/loading.svg" alt="theme button">
+    </div>
+</header>
+
+<div class="app">
+    <div id="content" class="content">
+        <div id="top_block" class="top_block">
+            <span class="title">
+                Портфолио
+            </span>
+
+            <button class="menu_btn">
+                <img class="menu_icon" width="50" src="public/arrow.svg" alt="menu button">
+            </button>
+
+            <ul class="menu_list hide" id="menu">
+                <li class="menu">
+                    <a href="#info" class="section_button">
+                        О себе
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#portfolio" class="section_button">
+                        Портфолио
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div>
+        <div id="info" class="info">
+            <div class="block_title">
+                    <span>
+                        О себе
+                    </span>
+
+                <button class="menu_btn">
+                    <img width="50" src="public/arrow.svg" alt="menu button">
+                </button>
+            </div>
+
+            <ul class="menu_list hide">
+                <div>
+                    <div>
+                        <span class="info_name">
+                            Морару Сергей
+                        </span>
+                    </div>
+
+                    <div>
+                        <span class="info_age">
+                            18 лет, Москва
+                        </span>
+                    </div>
+
+                    <ul>
+                        <li class="contact_item">
+                            <div class="contact_icon">
+                                <img width="50" src="public/telegram.svg" alt="telegram">
+                            </div>
+                            <div class="contact_text">
+                                <a href="https://t.me/celishere">@celishere</a>
+                            </div>
+                        </li>
+
+                        <li class="contact_item">
+                            <div class="contact_icon">
+                                <img width="50" src="public/github.png" alt="github">
+                            </div>
+                            <div class="contact_text">
+                                <a href="https://github.com/celishere">@celishere</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </ul>
+        </div>
+
+        <div id="portfolio">
+            <div class="block_title">
+                    <span>
+                        Портфолио
+                    </span>
+
+                <button class="menu_btn">
+                    <img width="50" src="public/arrow.svg" alt="menu button">
+                </button>
+            </div>
+
+            <ul class="menu_list hide">
+
+                <span class="code_title">
+                    Лаб. №2
+                </span>
+
+                <div class="code_card">
+                    <pre id="source_block">
+                        Loading...
+                    </pre>
+                </div>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+
+<script src="main.js"></script>
+<script type="module">
+    import hljs from 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/es/highlight.min.js';
+    import python from 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/es/languages/python.min.js';
+
+    hljs.registerLanguage('python', python);
+
+    const code = hljs.highlight(
+        ' from fastapi import FastAPI, HTTPException\n' +
+        ' from fastapi.responses import RedirectResponse\n' +
+        '\n' +
+        ' app = FastAPI()\n' +
+        '\n' +
+        '\n' +
+        ' @app.get("/")\n' +
+        ' async def index():\n' +
+        '    return RedirectResponse("/docs")\n' +
+        '\n' +
+        '\n' +
+        ' @app.post("/calc/add")\n' +
+        ' async def add(x: float, y: float):\n' +
+        '    return {"result": x + y}\n' +
+        '\n' +
+        '\n' +
+        ' @app.post("/calc/subtract")\n' +
+        ' async def subtract(x: float, y: float):\n' +
+        '    return {"result": x - y}\n' +
+        '\n' +
+        '\n' +
+        ' @app.post("/calc/multiply")\n' +
+        ' async def multiply(x: float, y: float):\n' +
+        '    return {"result": x * y}\n' +
+        '\n' +
+        '\n' +
+        ' @app.post("/calc/divide")\n' +
+        ' async def divide(x: float, y: float):\n' +
+        '    if y == 0:\n' +
+        '        raise HTTPException(\n' +
+        '              status_code=400,\n' +
+        '              detail="Cannot divide by zero")\n' +
+        '\n' +
+        '    return {"result": x / y}',
+        { language: 'python' }
+    ).value
+
+    const block = document.getElementById('source_block')
+    block.innerHTML = code
+
+    console.log(code)
+</script>
+</html>
